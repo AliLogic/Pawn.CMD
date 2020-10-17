@@ -59,7 +59,7 @@ class Script : public ptl::AbstractScript<Script> {
   bool OnLoad();
 
   bool HandleCommand(cell playerid, const char *cmdtext, const std::string &cmd,
-                     const char *params);
+                     const char *params, cell help);
 
   void NewCommand(const std::string &name, const PublicPtr &pub,
                   unsigned int flags = 0, bool is_alias = false);
