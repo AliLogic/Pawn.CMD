@@ -57,7 +57,7 @@ bool Script::OnLoad() {
 }
 
 bool Script::HandleCommand(cell playerid, const char *cmdtext,
-                           const std::string &cmd, const char *params) {
+                           const std::string &cmd, const char *params, cell help) {
   cell retval{};
 
   try {
@@ -74,7 +74,7 @@ bool Script::HandleCommand(cell playerid, const char *cmdtext,
     auto flags = command_exists ? iter_cmd->second->GetFlags() : 0;
 
     if (opcr_public_ && opcr_public_->Exists()) {
-      retval = opcr_public_->Exec(playerid, cmd, params, flags);
+      retval = opcr_public_->Exec(playerid, cmd, params, flags, help);
 
       if (retval == 0) {
         return true;  // continue
@@ -82,13 +82,13 @@ bool Script::HandleCommand(cell playerid, const char *cmdtext,
     }
 
     if (command_exists) {
-      retval = iter_cmd->second->GetPublic()->Exec(playerid, params);
+      retval = iter_cmd->second->GetPublic()->Exec(playerid, params, help);
     } else {
       retval = -1;
     }
 
     if (opcp_public_ && opcp_public_->Exists()) {
-      retval = opcp_public_->Exec(playerid, cmd, params, retval, flags);
+      retval = opcp_public_->Exec(playerid, cmd, params, retval, flags, help);
     }
 
     if (retval == 1) {
