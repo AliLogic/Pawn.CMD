@@ -65,7 +65,7 @@ cell PC_GetCommandName(Script *script, CmdArrayPtr arr, cell index, cell *dest,
 cell PC_FreeArray(Script *script, cell *arr);
 
 // native PC_EmulateCommand(playerid, const cmdtext[]);
-cell PC_EmulateCommand(Script *script, cell playerid, std::string cmdtext);
+cell PC_EmulateCommand(Script *script, cell playerid, std::string cmdtext, cell help);
 }  // namespace natives
 
 #endif  // PAWNCMD_NATIVES_H_
