@@ -126,12 +126,12 @@ class Plugin : public ptl::AbstractPlugin<Plugin, Script, Cell> {
 
   static int THISCALL HOOK_CFilterScripts__OnPlayerCommandText(
       void *, cell playerid, const char *cmdtext) {
-    ProcessCommand(playerid, cmdtext);
+    ProcessCommand(playerid, cmdtext, 0);
 
     return 1;
   }
 
-  static void ProcessCommand(cell playerid, const char *cmdtext) {
+  static void ProcessCommand(cell playerid, const char *cmdtext, cell help) {
     if (!cmdtext || cmdtext[0] != '/') {
       return;
     }
@@ -161,7 +161,7 @@ class Plugin : public ptl::AbstractPlugin<Plugin, Script, Cell> {
     cmd = Script::PrepareCommandName(cmd);
 
     Plugin::Instance().EveryScript([=](auto &script) {
-      return script->HandleCommand(playerid, cmdtext, cmd, params);
+      return script->HandleCommand(playerid, cmdtext, cmd, params, help);
     });
   }
 
