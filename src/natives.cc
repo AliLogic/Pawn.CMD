@@ -134,8 +134,8 @@ cell natives::PC_FreeArray(Script *script, cell *arr) {
 
 // native PC_EmulateCommand(playerid, const cmdtext[]);
 cell natives::PC_EmulateCommand(Script *script, cell playerid,
-                                std::string cmdtext) {
-  Plugin::ProcessCommand(playerid, cmdtext.c_str());
+                                std::string cmdtext, cell help) {
+  Plugin::ProcessCommand(playerid, cmdtext.c_str(), help);
 
   return 1;
 }
